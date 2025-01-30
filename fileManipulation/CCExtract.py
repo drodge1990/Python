@@ -34,6 +34,8 @@ for x in ccOut:
         ccImp['<1440>'] = x['Hours']
         ccImp['<1440R>'] = x['Rate']
 
-fields = ['<EMPID>','<POSTID>':'MAIN','<1120>','<1120R>','<1121>','<1121R>','<1122>','<1122R>','<1250>','<1250R>','<1440>','<1440R>']
-dictOutput = csv.DictWriter(open('./fileManipulation/output.csv','w'), fieldnames=fields)
-dictOutput.writerows(ccImp)
+print(ccImp)
+
+# fields = ['<EMPID>','<POSTID>':'MAIN','<1120>','<1120R>','<1121>','<1121R>','<1122>','<1122R>','<1250>','<1250R>','<1440>','<1440R>']
+# dictOutput = csv.DictWriter(open('./fileManipulation/output.csv','w'), fieldnames=fields)
+# dictOutput.writerows(ccImp)
