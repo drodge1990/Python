@@ -27,9 +27,9 @@ for x in list1:
     elif x[8] == 'Sunday':
         currEmp['<1120>'] = x[9]
         currEmp['<1120R>'] = x[10]
-    elif x[8] in {'Bank Holiday','Special Day 1','Special Day 2'}:
-        currEmp['<1250>'] = x[9]
-        currEmp['<1250R>'] = x[10]
-    elif x[8] in {'Holiday', 'Saturday Holiday', 'Sunday Holiday'}:
-        currEmp['<1440>'] = x[9]
-        currEmp['<1440R>'] = x[10]
+    # elif x[8] in {'Bank Holiday','Special Day 1','Special Day 2'}:
+    #     currEmp['<1250>'] = x[9]
+    #     currEmp['<1250R>'] = x[10]
+    # elif x[8] in {'Holiday', 'Saturday Holiday', 'Sunday Holiday'}:
+    #     currEmp['<1440>'] = x[9]
+    #     currEmp['<1440R>'] = x[10]
