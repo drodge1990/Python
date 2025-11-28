@@ -1,8 +1,8 @@
 test = True
 if test:
-    source = './adventOfCode/2024/Day3/testInputCodeD2.txt'
+    source = './adventOfCode/2024/Day3/testInputCodeD3.txt'
 else:
-    source = './adventOfCode/2024/Day3/inputCodeD2.txt'
+    source = './adventOfCode/2024/Day3/inputCodeD3.txt'
 
 with open(source,'r') as file:
     list1 = []
