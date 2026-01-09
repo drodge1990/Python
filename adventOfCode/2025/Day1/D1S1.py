@@ -19,6 +19,7 @@ currentPosition = 50
 count = 0
 
 for x in list1:
+    rotations = 0
     direction = ''.join(char for char in x if char.isalpha())
     regex = '\d+'
     valueList = re.findall(regex,x)
@@ -27,16 +28,31 @@ for x in list1:
     if direction == 'L':
         value *= -1
     
+    if direction == 'R' and currentPosition == 0 and value < 100:
+        count += 1
+
+    if (currentPosition + value)/100 == math.floor(abs(currentPosition + value)/100) and currentPosition + value != 0:
+        rotations = -1
+
     currentPosition += value
 
-    rotations = math.floor(abs(currentPosition)/100)
-  
+    rotations += math.floor(abs(currentPosition)/100)
+    
+    #print(rotations)
+
     if currentPosition < 0:
+        rotations += 1
         currentPosition += 100*rotations
     if currentPosition > 99:
         currentPosition -= 100*rotations
     
-    if currentPosition == 0:
-        count += 1
+    if currentPosition == 100:
+        currentPosition -= 100
 
-print(count)
+    count += rotations
+
+    print(f'Instruction: {x} Position: {currentPosition} Count: {count}')
+    #if currentPosition == 0:
+     #   count += 1
+
+print(f'answer: {count}')
