@@ -17,7 +17,7 @@ currentPosition = 0
 for x in list1:
     direction = ''.join(char for char in x if char.isalpha())
     value = int(''.join(char for char in x if char.isnum()))
-    if direction is 'L':
+    if direction == 'L':
         value = value * (-1)
     
     currentPosition = currentPosition+value
