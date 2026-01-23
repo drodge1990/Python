@@ -1,4 +1,4 @@
-import math
+from math import floor
 
 def positionBounding(currentPosition):
     
@@ -14,7 +14,7 @@ def longInst(value,currentPosition,count):
     currentPosition += value
 
     interimValue = currentPosition - (currentPosition % 100)
-    rotation = abs(math.floor((interimValue) / 100))
+    rotation = abs(floor((interimValue) / 100))
     
     count += rotation
     currentPosition %= 100
@@ -22,53 +22,55 @@ def longInst(value,currentPosition,count):
 
     return currentPosition,count
 
-test = False
-if test:
-    source = './adventOfCode/2025/Day1/testInputCodeD1.txt'
-else:
-    source = './adventOfCode/2025/Day1/inputCodeD1.txt'
-list1 = []
+if __name__ == "__main__":
 
-with open(source,'r') as file:
-    for line in file:
-        line = line.strip()
-        list1.append(line)
+    test = False
+    if test:
+        source = './adventOfCode/2025/Day1/testInputCodeD1.txt'
+    else:
+        source = './adventOfCode/2025/Day1/inputCodeD1.txt'
+    list1 = []
 
-direction = ''
-value = 0
-currentPosition = 50
-count = 0
-previousDirection = ''
-previousPosition = currentPosition
-countExeceptions = 0
-countExeceptions2 = 0
-part1Count = 0
+    with open(source,'r') as file:
+        for line in file:
+            line = line.strip()
+            list1.append(line)
 
-for x in list1:
-    direction = x[0]
-    value = int(x[1:])
-
-    if direction == 'L':
-        value *= -1
-    
-    output = longInst(value,currentPosition,count)
-
-    currentPosition = output[0]
-    count = output[1]
-
-    if direction == 'R' and previousDirection == 'L' and previousPosition == 0:
-        count += 1
-        countExeceptions += 1
-
-    if direction == 'L' and previousDirection =='R' and previousPosition == 0:
-        count -= 1
-        countExeceptions2 += 1
-
-    if currentPosition == 0:
-        part1Count += 1
-
-    previousDirection = direction
+    direction = ''
+    value = 0
+    currentPosition = 50
+    count = 0
+    previousDirection = ''
     previousPosition = currentPosition
-    previousCount = count
+    countExeceptions = 0
+    countExeceptions2 = 0
+    part1Count = 0
 
-print(f'answer: {count}, exception1: {countExeceptions}, exception2: {countExeceptions2}, Zeros: {part1Count}, final position: {currentPosition}')
+    for x in list1:
+        direction = x[0]
+        value = int(x[1:])
+
+        if direction == 'L':
+            value *= -1
+        
+        output = longInst(value,currentPosition,count)
+
+        currentPosition = output[0]
+        count = output[1]
+
+        if direction == 'R' and previousDirection == 'L' and previousPosition == 0:
+            count += 1
+            countExeceptions += 1
+
+        if direction == 'L' and previousDirection =='R' and previousPosition == 0:
+            count -= 1
+            countExeceptions2 += 1
+
+        if currentPosition == 0:
+            part1Count += 1
+
+        previousDirection = direction
+        previousPosition = currentPosition
+        previousCount = count
+
+    print(f'answer: {count}, exception1: {countExeceptions}, exception2: {countExeceptions2}, Zeros: {part1Count}, final position: {currentPosition}')
