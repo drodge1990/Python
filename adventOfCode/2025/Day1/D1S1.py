@@ -69,6 +69,5 @@ for x in list1:
 
     previousDirection = direction
     previousPosition = currentPosition
-    previousCount = count
 
 print(f'answer: {count}, exception1: {countExeceptions}, exception2: {countExeceptions2}, Zeros: {part1Count}, final position: {currentPosition}')
