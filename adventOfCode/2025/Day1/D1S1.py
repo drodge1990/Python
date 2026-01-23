@@ -72,4 +72,4 @@ if __name__ == "__main__":
     previousDirection = direction
     previousPosition = currentPosition
 
-print(f'answer: {count}, exception1: {countExeceptions}, exception2: {countExeceptions2}, Zeros: {part1Count}, final position: {currentPosition}')
+    print(f'answer: {count}, exception1: {countExeceptions}, exception2: {countExeceptions2}, Zeros: {part1Count}, final position: {currentPosition}')
