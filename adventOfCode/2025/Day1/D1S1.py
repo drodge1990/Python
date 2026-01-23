@@ -1,7 +1,28 @@
-import re
 import math
 
-test = True
+def positionBounding(currentPosition):
+    
+    if currentPosition < 0:
+        currentPosition += 100
+    elif currentPosition > 99:
+        currentPosition -= 100
+    
+    return currentPosition
+
+def longInst(value,currentPosition,count):
+    
+    currentPosition += value
+
+    interimValue = currentPosition - (currentPosition % 100)
+    rotation = abs(math.floor((interimValue) / 100))
+    
+    count += rotation
+    currentPosition %= 100
+    currentPosition = positionBounding(currentPosition)
+
+    return currentPosition,count
+
+test = False
 if test:
     source = './adventOfCode/2025/Day1/testInputCodeD1.txt'
 else:
@@ -17,42 +38,37 @@ direction = ''
 value = 0
 currentPosition = 50
 count = 0
+previousDirection = ''
+previousPosition = currentPosition
+countExeceptions = 0
+countExeceptions2 = 0
+part1Count = 0
 
 for x in list1:
-    rotations = 0
-    direction = ''.join(char for char in x if char.isalpha())
-    regex = '\d+'
-    valueList = re.findall(regex,x)
-    value = int(valueList[0])
-    #print(value)
+    direction = x[0]
+    value = int(x[1:])
+
     if direction == 'L':
         value *= -1
     
-    if direction == 'R' and currentPosition == 0 and value < 100:
+    output = longInst(value,currentPosition,count)
+
+    currentPosition = output[0]
+    count = output[1]
+
+    if direction == 'R' and previousDirection == 'L' and previousPosition == 0:
         count += 1
+        countExeceptions += 1
 
-    if (currentPosition + value)/100 == math.floor(abs(currentPosition + value)/100) and currentPosition + value != 0:
-        rotations = -1
+    if direction == 'L' and previousDirection =='R' and previousPosition == 0:
+        count -= 1
+        countExeceptions2 += 1
 
-    currentPosition += value
+    if currentPosition == 0:
+        part1Count += 1
 
-    rotations += math.floor(abs(currentPosition)/100)
-    
-    #print(rotations)
+    previousDirection = direction
+    previousPosition = currentPosition
+    previousCount = count
 
-    if currentPosition < 0:
-        rotations += 1
-        currentPosition += 100*rotations
-    if currentPosition > 99:
-        currentPosition -= 100*rotations
-    
-    if currentPosition == 100:
-        currentPosition -= 100
-
-    count += rotations
-
-    print(f'Instruction: {x} Position: {currentPosition} Count: {count}')
-    #if currentPosition == 0:
-     #   count += 1
-
-print(f'answer: {count}')
+print(f'answer: {count}, exception1: {countExeceptions}, exception2: {countExeceptions2}, Zeros: {part1Count}, final position: {currentPosition}')
