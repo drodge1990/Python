@@ -12,24 +12,21 @@ def readFile(filename):
 def joltageExtractPart2(battery):
 
     offset = 12
-    currentBattery = '-1'
     startPosition = 0
     internalPosition = 0
     endPosition = len(battery)-(offset-1)
     batteryList = []
     
     while len(batteryList) < offset:
+        currentBattery = '-1'
         for i, jolt in enumerate(battery[startPosition:endPosition],1):
-            if int(jolt) > int(currentBattery) and i < endPosition:
+            if int(jolt) > int(currentBattery) and i <= endPosition:
                 currentBattery = jolt
                 internalPosition = i
         
         batteryList.append(currentBattery)
         startPosition += internalPosition
         endPosition += 1
-        currentBattery = '-1'
-
-    #print(batteryList)
     
     return ''.join(batteryList)
 
@@ -71,6 +68,4 @@ if __name__ == "__main__":
     for battery in banks:
         joltageListPart2.append(int(joltageExtractPart2(battery)))
 
-    #part 2 attempt1: 171935854269367 too low
-    
     print((f'Part 1: {sum(joltageListPart1)} Part 2: {sum(joltageListPart2)}'))
