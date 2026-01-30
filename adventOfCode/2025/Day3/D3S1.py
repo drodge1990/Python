@@ -9,9 +9,9 @@ def readFile(filename):
 
     return list1
 
-def joltageExtractPart2(battery):
+def joltageExtract(battery,length):
 
-    offset = 12
+    offset = length
     startPosition = 0
     internalPosition = 0
     endPosition = len(battery)-(offset-1)
@@ -58,14 +58,14 @@ if __name__ == "__main__":
 
     #source = './adventOfCode/2025/Day3/testInputCodeD3.txt'
     source = './adventOfCode/2025/Day3/InputCodeD3.txt'
-    joltageListPart1 = []
-    joltageListPart2 = []
+    joltagePart1 = 0
+    joltagePart2 = 0
+    part1 = 2
+    part2 = 12
     banks = readFile(source)
 
     for battery in banks:
-        joltageListPart1.append(int(joltageExtractPart1(battery)))
-    
-    for battery in banks:
-        joltageListPart2.append(int(joltageExtractPart2(battery)))
+        joltagePart1 += int(joltageExtract(battery,part1))
+        joltagePart2 += int(joltageExtract(battery,part2))
 
-    print((f'Part 1: {sum(joltageListPart1)} Part 2: {sum(joltageListPart2)}'))
+    print((f'Part 1: {joltagePart1} Part 2: {joltagePart2}'))
