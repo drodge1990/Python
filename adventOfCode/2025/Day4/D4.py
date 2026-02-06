@@ -18,6 +18,7 @@ def item_check(full_array):
     row = 0
     col = 0
     reference = []
+    change_references = []
 
     for rows in full_array:
         
@@ -26,11 +27,17 @@ def item_check(full_array):
             if item == '@' and array_check(reference,full_array):
                 count += 1
                 print(reference)
+                change_references.append(reference)
             col += 1
         row += 1
         col = 0
+
+    amended_array = full_array
     
-    return count
+    for change in change_references:
+        amended_array[change[0]][change[1]] = '.'
+
+    return count,amended_array
 
 def array_check(reference,total_array):
     adjacent_count = 0
@@ -85,6 +92,16 @@ if __name__ == '__main__':
     test = './adventOfCode/2025/Day4/testInputCodeD4.txt'
     source = './adventOfCode/2025/Day4/inputCodeD4.txt'
 
-    full_array = read_file(source)
+    full_array = read_file(test)
+    output1 = item_check(full_array)
+    part1,amended_array = output1[0],output1[1]
+    part2 = part1
+
+    while item_check(amended_array)[0] > 0:
+        
+        output2 = item_check(amended_array)
+
+        part2 += output2[0]
+        amended_array = output2[1]
     
-    print(item_check(full_array))
+    print(part2)
