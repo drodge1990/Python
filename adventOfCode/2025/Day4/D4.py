@@ -1,3 +1,5 @@
+import copy
+
 def read_file(filename):
     
     list1 = []
@@ -26,14 +28,14 @@ def item_check(full_array):
             reference = [row,col]
             if item == '@' and array_check(reference,full_array):
                 count += 1
-                print(reference)
+                #print(reference)
                 change_references.append(reference)
             col += 1
         row += 1
         col = 0
-
-    amended_array = full_array
     
+    amended_array = copy.deepcopy(full_array)
+
     for change in change_references:
         amended_array[change[0]][change[1]] = '.'
 
@@ -92,9 +94,10 @@ if __name__ == '__main__':
     test = './adventOfCode/2025/Day4/testInputCodeD4.txt'
     source = './adventOfCode/2025/Day4/inputCodeD4.txt'
 
-    full_array = read_file(test)
+    full_array = read_file(source)
     output1 = item_check(full_array)
-    part1,amended_array = output1[0],output1[1]
+    part1 = output1[0]
+    amended_array = output1[1]
     part2 = part1
 
     while item_check(amended_array)[0] > 0:
