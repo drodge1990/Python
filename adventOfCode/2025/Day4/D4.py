@@ -23,7 +23,7 @@ def item_check(full_array):
         
         for item in rows:
             reference = [row,col]
-            if item == '@' and array_check(reference,full_array) == True:
+            if item == '@' and array_check(reference,full_array):
                 count += 1
                 print(reference)
             col += 1
@@ -52,11 +52,6 @@ def array_check(reference,total_array):
         #have to check diagonal right
             if total_array[row - 1][col + 1] == '@':
                 adjacent_count += 1
-
-    if col != max_col:
-        #have to check right
-        if total_array[row][col + 1] == '@':
-            adjacent_count += 1
     
     if row != max_row:
         #have to check below
