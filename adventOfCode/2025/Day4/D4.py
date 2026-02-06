@@ -85,6 +85,6 @@ if __name__ == '__main__':
     test = './adventOfCode/2025/Day4/testInputCodeD4.txt'
     source = './adventOfCode/2025/Day4/inputCodeD4.txt'
 
-    full_array = read_file(test)
+    full_array = read_file(source)
     
     print(item_check(full_array))
